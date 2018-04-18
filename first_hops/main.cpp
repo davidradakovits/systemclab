@@ -24,10 +24,19 @@ int sc_main(int argc, char* argv[])
 	mon1.B(sig_B);
 	mon1.Carry(sig_Carry);
 	mon1.Sum(sig_Sum);
+	mon1.CLK(TestCLK);
 
 	cout << "B" << "A" << "C" << "S" << endl;
 
-	sc_start();
+	sc_trace_file* Tf;
+	Tf = sc_create_vcd_trace_file("traces");
+	//((vcd_trace_file*)Tf)->sc_set_vcd_time_unit(-9);
+	sc_trace(Tf, sig_A, "A");
+	sc_trace(Tf, sig_B, "B");
+	sc_trace(Tf, sig_Sum, "Sum");
+	sc_trace(Tf, sig_Carry, "Carry");
 
+	sc_start();
+	sc_close_vcd_trace_file(Tf);
 	return 0;
 }

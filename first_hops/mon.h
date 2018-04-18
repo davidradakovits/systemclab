@@ -4,16 +4,21 @@
 SC_MODULE(mon)
 {
 	sc_in<bool>A,B,Sum,Carry;
+	sc_in<bool>CLK;
 
 	void monitor()
 	{
-		cout 	<< sc_simulation_time() << " "
+		while(1)
+			{
+				cout 	<< sc_time_stamp() << " "
 				<< B << A << Carry << Sum << endl;
+				wait();
+			}
 	}
 
 	SC_CTOR(mon)
 	{
-		SC_METHOD(monitor);
-		sensitive << A << B << Sum << Carry;
+		SC_THREAD(monitor);
+		sensitive << CLK.pos();
 	}
 };
