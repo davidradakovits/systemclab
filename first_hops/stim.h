@@ -2,9 +2,9 @@
 
 SC_MODULE(stim)
 {
-	int SIZE = 8;
+	static const int SIZE = 8;
 
-	sc_vector<sc_out<bool>> A,B;
+	sc_vector<sc_out<bool> > A,B;
 	sc_in<bool> CLK;
 
 	void stim_gen()

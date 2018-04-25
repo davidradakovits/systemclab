@@ -5,8 +5,10 @@
 
 int sc_main(int argc, char* argv[])
 {
+	static const int SIZE = 8;
+
 	sc_signal<bool> CLK;
-	sc_vector<sc_signal<bool>> sig_A,sig_B,sig_Sum;
+	sc_vector<sc_signal<bool> > sig_A,sig_B,sig_Sum;
 	sc_signal<bool> sig_Carry;
 	sc_clock TestCLK("TestClock", 10, SC_NS, 0.5, 1, SC_NS);
 
@@ -20,6 +22,7 @@ int sc_main(int argc, char* argv[])
 	DUT.B(sig_B);
 	DUT.Sum(sig_Sum);
 	DUT.Carry(sig_Carry);
+	DUT.CLK(TestCLK);
 
 	mon mon1("Monitor");
 	mon1.A(sig_A);
@@ -28,15 +31,19 @@ int sc_main(int argc, char* argv[])
 	mon1.Sum(sig_Sum);
 	mon1.CLK(TestCLK);
 
-	cout << "Cin" << "B" << "A" << "C" << "S" << endl;
+	cout << "B" << "A" << "C" << "S" << endl;
 
 	sc_trace_file* Tf;
 	Tf = sc_create_vcd_trace_file("traces");
 	//((vcd_trace_file*)Tf)->sc_set_vcd_time_unit(-9);
-	sc_trace(Tf, sig_A, "A");
-	sc_trace(Tf, sig_B, "B");
-	sc_trace(Tf, sig_Sum, "Sum");
+	for(int i = 0; i < SIZE; i++)
+	{
+		sc_trace(Tf, sig_A[i], "A");
+		sc_trace(Tf, sig_B[i], "B");
+		sc_trace(Tf, sig_Sum[i], "Sum");
+	}
 	sc_trace(Tf, sig_Carry, "Carry");
+	//sc_trace(Tf, CLK, "CLK");
 
 	sc_start();
 	sc_close_vcd_trace_file(Tf);

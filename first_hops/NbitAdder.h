@@ -3,7 +3,7 @@
 
 SC_MODULE(Nadder)	//macro that creates class adder
 {
-	int SIZE = 8;
+	static const int SIZE = 8;
 
 	sc_in<bool> CLK;
 	sc_vector< sc_in<bool> > A,B;
@@ -30,7 +30,7 @@ SC_MODULE(Nadder)	//macro that creates class adder
 
 		Carry.write(adders[SIZE].Carry);		//last carry is global carry out
 
-		SC_THREAD(Nadder);
+		//SC_THREAD(Nadder);
 		sensitive << CLK.pos();
 	}
 };
