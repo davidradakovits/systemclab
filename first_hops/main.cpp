@@ -1,11 +1,13 @@
 #include "systemc.h"
-#include "half_adder.h"
+#include "NbitAdder.h"
 #include "stim.h"
 #include "mon.h"
 
 int sc_main(int argc, char* argv[])
 {
-	sc_signal<bool> sig_A,sig_B,sig_Sum,sig_Carry;
+	sc_signal<bool> CLK;
+	sc_vector<sc_signal<bool>> sig_A,sig_B,sig_Sum;
+	sc_signal<bool> sig_Carry;
 	sc_clock TestCLK("TestClock", 10, SC_NS, 0.5, 1, SC_NS);
 
 	stim stim1("Stimulus");
@@ -13,7 +15,7 @@ int sc_main(int argc, char* argv[])
 	stim1.B(sig_B);
 	stim1.CLK(TestCLK);
 
-	halfadd DUT("HalfAdder");
+	Nadder DUT("NbitAdder");
 	DUT.A(sig_A);
 	DUT.B(sig_B);
 	DUT.Sum(sig_Sum);
@@ -26,7 +28,7 @@ int sc_main(int argc, char* argv[])
 	mon1.Sum(sig_Sum);
 	mon1.CLK(TestCLK);
 
-	cout << "B" << "A" << "C" << "S" << endl;
+	cout << "Cin" << "B" << "A" << "C" << "S" << endl;
 
 	sc_trace_file* Tf;
 	Tf = sc_create_vcd_trace_file("traces");

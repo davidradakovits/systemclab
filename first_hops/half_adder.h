@@ -10,7 +10,7 @@ SC_MODULE(halfadd)				//macro that creates class halfadd
 	and2 and_1;
 	xor2 xor_1;
 
-	SC_CTOR(halfadd) : and_1("andgate1"), xor_1("xorgate1")
+	SC_CTOR(halfadd) : and_1("andgate1"), xor_1("xorgate1") //constructor macro
 	{
 		and_1.A(A);
 		and_1.B(B);
