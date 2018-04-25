@@ -43,10 +43,13 @@ int sc_main(int argc, char* argv[])
 	Tf->set_time_unit(5, SC_PS);
 	for(int i = 0; i < SIZE; i++)
 	{
-		char buffer[3];
-		sc_trace(Tf, sig_A[i], "A" << sprintf(buffer,"%d",i);
-		sc_trace(Tf, sig_B[i], "B");
-		sc_trace(Tf, sig_Sum[i], "Sum");
+		char buffer[5];
+		sprintf(buffer,"A%d",i);
+		sc_trace(Tf, sig_A[i], buffer);
+		sprintf(buffer,"B%d",i);
+		sc_trace(Tf, sig_B[i], buffer);
+		sprintf(buffer,"Sum%d",i);
+		sc_trace(Tf, sig_Sum[i], buffer);
 	}
 	sc_trace(Tf, sig_Carry, "Carry");
 	//sc_trace(Tf, TestCLK, "CLK");
