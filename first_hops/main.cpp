@@ -9,6 +9,9 @@ int sc_main(int argc, char* argv[])
 
 	sc_signal<bool> CLK;
 	sc_vector<sc_signal<bool> > sig_A,sig_B,sig_Sum;
+	sig_A.init(SIZE);
+	sig_B.init(SIZE);
+	sig_Sum.init(SIZE);
 	sc_signal<bool> sig_Carry;
 	sc_clock TestCLK("TestClock", 10, SC_NS, 0.5, 1, SC_NS);
 
@@ -23,6 +26,7 @@ int sc_main(int argc, char* argv[])
 	DUT.Sum(sig_Sum);
 	DUT.Carry(sig_Carry);
 	DUT.CLK(TestCLK);
+	DUT.S1[0].write(false);
 
 	mon mon1("Monitor");
 	mon1.A(sig_A);

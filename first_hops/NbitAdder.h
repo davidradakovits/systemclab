@@ -14,9 +14,13 @@ SC_MODULE(Nadder)	//macro that creates class adder
 
 	sc_vector<fulladd> adders;
 
-	SC_CTOR(Nadder) : A("A",SIZE),B("B",SIZE),Sum("Sum",SIZE),S1("S1",SIZE+1),adders("adders",SIZE)
+	//SC_CTOR(Nadder) : A("A",SIZE),B("B",SIZE),Sum("Sum",SIZE),S1("S1",SIZE+1),adders("adders",SIZE)
+	SC_CTOR(Nadder) : A("A"),B("B"),Sum("Sum"),S1("S1"),adders("adders")
 	{
-		S1[0].write(false);				//Carry in of first adder is zero
+		A.init(SIZE);
+		B.init(SIZE);
+		Sum.init(SIZE+1);
+		S1.init(SIZE);
 
 		for(int i = 0; i < SIZE; i++)
 		{
@@ -28,9 +32,10 @@ SC_MODULE(Nadder)	//macro that creates class adder
 			adders[i].Carry(S1[i+1]);	//ripple carry
 		}
 
-		Carry.write(adders[SIZE].Carry);		//last carry is global carry out
+		adders[SIZE-1].Carry(Carry);	//last carry is global carry out
+		//TODO: First Carry must be set zero!
 
-		//SC_THREAD(Nadder);
-		sensitive << CLK.pos();
+		//SC_CTHREAD(Nadder);
+		//sensitive << CLK.pos();
 	}
 };

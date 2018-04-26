@@ -48,8 +48,12 @@ SC_MODULE(stim)
 		sc_stop();
 	}
 
-	SC_CTOR(stim) : A("A",SIZE),B("B",SIZE)
+	//SC_CTOR(stim) : A("A",SIZE),B("B",SIZE)
+	SC_CTOR(stim) : A("A"),B("B")
 	{
+		A.init(SIZE);
+		B.init(SIZE);
+
 		SC_THREAD(stim_gen);
 		sensitive << CLK.neg();
 	}

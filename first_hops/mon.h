@@ -18,8 +18,13 @@ SC_MODULE(mon)
 			}
 	}
 
-	SC_CTOR(mon) : A("A",SIZE),B("B",SIZE),Sum("Sum",SIZE)
+	//SC_CTOR(mon) : A("A",SIZE),B("B",SIZE),Sum("Sum",SIZE)
+	SC_CTOR(mon) : A("A"),B("B"),Sum("Sum")
 	{
+		A.init(SIZE);
+		B.init(SIZE);
+		Sum.init(SIZE);
+
 		SC_THREAD(monitor);
 		sensitive << CLK.pos();
 	}
