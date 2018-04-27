@@ -20,7 +20,7 @@ int sc_main(int argc, char* argv[])
 	stim1.B(sig_B);
 	stim1.CLK(TestCLK);
 
-	Nadder DUT("NbitAdder");
+	Nadder DUT("bitAdderUT");
 	DUT.A(sig_A);
 	DUT.B(sig_B);
 	DUT.Sum(sig_Sum);
