@@ -38,7 +38,7 @@ SC_MODULE(Nadder)	//macro that creates class adder
 
 		adders[SIZE-1].Carry(Carry);	//last carry is global carry out
 
-		//SC_CTHREAD(Nadder);
+		//SC_THREAD(Nadder);
 		//sensitive << CLK.pos();
 	}
 };

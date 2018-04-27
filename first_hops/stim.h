@@ -16,7 +16,7 @@ SC_MODULE(stim)
 		A[4].write(false);
 		A[5].write(false);
 		A[6].write(false);
-		A[7].write(false);
+		A[7].write(true);
 		B[0].write(true);
 		B[1].write(false);
 		B[2].write(false);
@@ -24,7 +24,7 @@ SC_MODULE(stim)
 		B[4].write(false);
 		B[5].write(false);
 		B[6].write(true);
-		B[7].write(false);
+		B[7].write(true);
 		wait();
 
 		A[0].write(false);
@@ -55,6 +55,6 @@ SC_MODULE(stim)
 		B.init(SIZE);
 
 		SC_THREAD(stim_gen);
-		sensitive << CLK.neg();
+		sensitive << CLK.pos();
 	}
 };

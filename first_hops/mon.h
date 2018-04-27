@@ -13,7 +13,13 @@ SC_MODULE(mon)
 	{
 		while(1)
 			{
-				//cout << sc_time_stamp() << " " << B << A << Carry << Sum << endl;
+				//cout << sc_time_stamp() << " ";
+				for(int i = 0; i < SIZE; i++) cout << B[i];
+				cout << " ";
+				for(int i = 0; i < SIZE; i++) cout << A[i];
+				cout << " " << Carry << " ";
+				for(int i = 0; i < SIZE; i++) cout << Sum[i];
+				cout << endl;
 				wait();
 			}
 	}

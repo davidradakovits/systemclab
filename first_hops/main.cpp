@@ -2,6 +2,8 @@
 #include "NbitAdder.h"
 #include "stim.h"
 #include "mon.h"
+#include <string>
+#include <stdio.h>
 
 int sc_main(int argc, char* argv[])
 {
@@ -35,21 +37,26 @@ int sc_main(int argc, char* argv[])
 	mon1.Sum(sig_Sum);
 	mon1.CLK(TestCLK);
 
-	cout << "B" << "A" << "C" << "S" << endl;
-
 	sc_trace_file* Tf;
 	Tf = sc_create_vcd_trace_file("traces");
 	//((vcd_trace_file*)Tf)->sc_set_vcd_time_unit(-9);
+	Tf->set_time_unit(5, SC_PS);
 	for(int i = 0; i < SIZE; i++)
 	{
-		sc_trace(Tf, sig_A[i], "A");
+		char buffer[3];
+		sc_trace(Tf, sig_A[i], "A" << sprintf(buffer,"%d",i);
 		sc_trace(Tf, sig_B[i], "B");
 		sc_trace(Tf, sig_Sum[i], "Sum");
 	}
 	sc_trace(Tf, sig_Carry, "Carry");
-	//sc_trace(Tf, CLK, "CLK");
+	//sc_trace(Tf, TestCLK, "CLK");
 
-	sc_start();
+	cout << endl << endl << "       B " << "       A " << "C " << "       S" << endl;
+
+	sc_start(30, SC_NS);
 	sc_close_vcd_trace_file(Tf);
+
+	cout << endl;
+
 	return 0;
 }
