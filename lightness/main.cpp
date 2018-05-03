@@ -1,45 +1,13 @@
 #include "systemc.h"
-#include <fstream>
-#include <iostream>
-#include <string>
-#include <array>
-#include <vector>
-#include <iterator>
+#include "TB.h"
 
-//"/home/sclab64/workspace/lightness/test_pattern.bmp"
+int sc_main(int argc, char ** arv) {
 
-unsigned char* readBMP(char* filename)
-{
-    int i;
-    FILE* f = fopen(filename, "rb");
-    unsigned char info[54];
-    fread(info, sizeof(unsigned char), 54, f); // read the 54-byte header
+	sc_clock CLK("ClockSignal", 20, SC_NS);
 
-    // extract image height and width from header
-    int width = *(int*)&info[18];
-    int height = *(int*)&info[22];
+	TB tb1("Top_module");
+	tb1.CLK(CLK);
 
-    int size = 3 * width * height;
-    unsigned char* data = new unsigned char[size]; // allocate 3 bytes per pixel
-    fread(data, sizeof(unsigned char), size, f); // read the rest of the data at once
-    fclose(f);
-
-    for(i = 0; i < size; i += 3)
-    {
-            unsigned char tmp = data[i];
-            data[i] = data[i+2];
-            data[i+2] = tmp;
-    }
-
-    return data;
-}
-
-int sc_main(int argc, char* argv[])
-{
-	unsigned char* data;
-
-	data=readBMP("/home/sclab64/workspace/lightness/test_pattern.bmp");
-	cout << "erster wert: " << data;
-
+	sc_start(5000, SC_US);
 	return 0;
 }
