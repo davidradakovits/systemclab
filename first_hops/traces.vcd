@@ -1,0 +1,80 @@
+$date
+     Apr 25, 2018       01:29:24
+$end
+
+$version
+ SystemC 2.3.1-Accellera --- Mar 17 2016 02:24:18
+$end
+
+$scope module SystemC $end
+$var wire    1  aaaaa  A0       $end
+$var wire    1  aaaab  B0       $end
+$var wire    1  aaaac  Sum0       $end
+$var wire    1  aaaad  A1       $end
+$var wire    1  aaaae  B1       $end
+$var wire    1  aaaaf  Sum1       $end
+$var wire    1  aaaag  A2       $end
+$var wire    1  aaaah  B2       $end
+$var wire    1  aaaai  Sum2       $end
+$var wire    1  aaaaj  A3       $end
+$var wire    1  aaaak  B3       $end
+$var wire    1  aaaal  Sum3       $end
+$var wire    1  aaaam  A4       $end
+$var wire    1  aaaan  B4       $end
+$var wire    1  aaaao  Sum4       $end
+$var wire    1  aaaap  A5       $end
+$var wire    1  aaaaq  B5       $end
+$var wire    1  aaaar  Sum5       $end
+$var wire    1  aaaas  A6       $end
+$var wire    1  aaaat  B6       $end
+$var wire    1  aaaau  Sum6       $end
+$var wire    1  aaaav  A7       $end
+$var wire    1  aaaaw  B7       $end
+$var wire    1  aaaax  Sum7       $end
+$var wire    1  aaaay  Carry       $end
+$upscope $end
+$enddefinitions  $end
+
+$comment
+All initial values are dumped below at time 0 sec = 0 timescale units.
+$end
+
+$dumpvars
+0aaaaa
+1aaaab
+1aaaac
+0aaaad
+0aaaae
+0aaaaf
+0aaaag
+0aaaah
+0aaaai
+0aaaaj
+1aaaak
+1aaaal
+0aaaam
+0aaaan
+0aaaao
+0aaaap
+0aaaaq
+0aaaar
+0aaaas
+1aaaat
+1aaaau
+1aaaav
+1aaaaw
+0aaaax
+1aaaay
+$end
+
+#200
+0aaaab
+0aaaac
+0aaaak
+0aaaal
+0aaaat
+0aaaau
+0aaaav
+0aaaaw
+0aaaay
+
