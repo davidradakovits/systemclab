@@ -31,7 +31,7 @@ SC_MODULE(fileIO)
 		//https://stackoverflow.com/questions/9296059/read-pixel-value-in-bmp-file
 		cout << "fopen source"<<endl;
 	    int i;
-	    FILE* f = fopen("/home/sclab64/workspace/lightness/test_pattern.bmp", "r");
+	    FILE* f = fopen("/home/sclab64/workspace/lightness/new_test.bmp", "r");
 
 	    if(f==0)
 	    {
@@ -39,12 +39,12 @@ SC_MODULE(fileIO)
 	    	return;
 	    }
 
-	    unsigned char info[26];
-	    fread(info, sizeof(unsigned char), 26, f); // read the 54-byte header
+	    unsigned char info[54];
+	    fread(info, sizeof(unsigned char), 54, f); // read the 54-byte header
 
 	    // extract image height and width from header
-	    int width = *(char*)&info[18];
-	    int height = *(char*)&info[20];
+	    int width = *(int*)&info[18];
+	    int height = *(int*)&info[22];
 
 	    int size = 3 * width * height;
 	    unsigned char* data = new unsigned char[size]; // allocate 3 bytes per pixel
@@ -70,7 +70,7 @@ SC_MODULE(fileIO)
 	    }
 
 	    cout << "fopen sink"<<endl;
-	    f = fopen("/home/sclab64/workspace/lightness/test_pattern_gray.bmp","w");
+	    f = fopen("/home/sclab64/workspace/lightness/new_test_gray.bmp","w");
 
 	    if(f==0)
 	    {
@@ -78,7 +78,7 @@ SC_MODULE(fileIO)
 	    	return;
 	    }
 
-	    fwrite(info,sizeof(unsigned char),26,f);	//Header zurückschreiben
+	    fwrite(info,sizeof(unsigned char),54,f);	//Header zurückschreiben
 	    fwrite(data, sizeof(unsigned char), size, f); // write the rest of the data at once
 	    fclose(f);
 	}
